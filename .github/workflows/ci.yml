@@ -41,7 +41,7 @@ jobs:
     name: Lint
     runs-on: macos-26
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Formatting (swift format)
         run: swift format lint --strict --recursive Sources Tests Examples
       - name: Design tokens
@@ -51,7 +51,7 @@ jobs:
     name: Unit & snapshot tests (Xcode 16.4, iOS 18)
     runs-on: macos-15
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Select Xcode 16.4
         run: sudo xcode-select -s /Applications/Xcode_16.4.app
       - name: Show toolchain
@@ -80,20 +80,20 @@ jobs:
             -resultBundlePath SnapshotTests.xcresult
       - name: Upload recorded snapshots
         if: ${{ inputs.record-snapshots }}
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: snapshot-references
           path: Examples/SwiftForgeShowcase/__Snapshots__
       - name: Upload snapshot failures
         if: failure()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: snapshot-failures
           path: Examples/SwiftForgeShowcase/__Snapshots__/.failures
           if-no-files-found: ignore
       - name: Upload test results
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: minimum-toolchain-results
           path: "*.xcresult"
@@ -103,7 +103,7 @@ jobs:
     if: github.event_name != 'pull_request' && !inputs.record-snapshots
     runs-on: macos-15
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Select Xcode 16.4
         run: sudo xcode-select -s /Applications/Xcode_16.4.app
       - name: Pick simulator
@@ -119,7 +119,7 @@ jobs:
             -resultBundlePath UITests.xcresult
       - name: Upload test results
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: ui-test-results
           path: "*.xcresult"
@@ -128,7 +128,7 @@ jobs:
     name: Unit tests (Xcode 16.4, iOS 17)
     runs-on: macos-15
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Select Xcode 16.4
         run: sudo xcode-select -s /Applications/Xcode_16.4.app
       - name: Pick or install an iOS 17 simulator
@@ -150,7 +150,7 @@ jobs:
             -resultBundlePath UnitTests.xcresult
       - name: Upload test results
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: minimum-os-results
           path: "*.xcresult"
@@ -159,7 +159,7 @@ jobs:
     name: Build, test & docs (latest Xcode)
     runs-on: macos-26
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Show toolchain
         run: xcodebuild -version && swift --version
       - name: Pick simulator
@@ -187,7 +187,7 @@ jobs:
         run: scripts/build-docs.sh
       - name: Upload test results
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: latest-toolchain-results
           path: "*.xcresult"
