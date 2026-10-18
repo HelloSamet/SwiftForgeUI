@@ -1,0 +1,488 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		5F0000000000000000000019 /* SwiftForgeUI in Frameworks */ = {isa = PBXBuildFile; productRef = 5F0000000000000000000017; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		5F000000000000000000001B = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5F0000000000000000000001;
+			proxyType = 1;
+			remoteGlobalIDString = 5F000000000000000000000A;
+			remoteInfo = SwiftForgeShowcase;
+		};
+		5F000000000000000000001C = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5F0000000000000000000001;
+			proxyType = 1;
+			remoteGlobalIDString = 5F000000000000000000000A;
+			remoteInfo = SwiftForgeShowcase;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		5F0000000000000000000007 /* SwiftForgeShowcase.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftForgeShowcase.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		5F0000000000000000000008 /* SnapshotTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SnapshotTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		5F0000000000000000000009 /* UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		5F0000000000000000000004 /* SwiftForgeShowcase */ = {isa = PBXFileSystemSynchronizedRootGroup; path = SwiftForgeShowcase; sourceTree = "<group>"; };
+		5F0000000000000000000005 /* SnapshotTests */ = {isa = PBXFileSystemSynchronizedRootGroup; path = SnapshotTests; sourceTree = "<group>"; };
+		5F0000000000000000000006 /* UITests */ = {isa = PBXFileSystemSynchronizedRootGroup; path = UITests; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		5F000000000000000000000E = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5F0000000000000000000019 /* SwiftForgeUI in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5F0000000000000000000011 = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5F0000000000000000000014 = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		5F0000000000000000000002 = {
+			isa = PBXGroup;
+			children = (
+				5F0000000000000000000004,
+				5F0000000000000000000005,
+				5F0000000000000000000006,
+				5F0000000000000000000003,
+			);
+			sourceTree = "<group>";
+		};
+		5F0000000000000000000003 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				5F0000000000000000000007,
+				5F0000000000000000000008,
+				5F0000000000000000000009,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		5F000000000000000000000A /* SwiftForgeShowcase */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5F0000000000000000000020;
+			buildPhases = (
+				5F000000000000000000000D,
+				5F000000000000000000000E,
+				5F000000000000000000000F,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				5F0000000000000000000004,
+			);
+			name = SwiftForgeShowcase;
+			packageProductDependencies = (
+				5F0000000000000000000017,
+			);
+			productName = SwiftForgeShowcase;
+			productReference = 5F0000000000000000000007;
+			productType = "com.apple.product-type.application";
+		};
+		5F000000000000000000000B /* SnapshotTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5F0000000000000000000021;
+			buildPhases = (
+				5F0000000000000000000010,
+				5F0000000000000000000011,
+				5F0000000000000000000012,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5F000000000000000000001D,
+			);
+			fileSystemSynchronizedGroups = (
+				5F0000000000000000000005,
+			);
+			name = SnapshotTests;
+			packageProductDependencies = (
+			);
+			productName = SnapshotTests;
+			productReference = 5F0000000000000000000008;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		5F000000000000000000000C /* UITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5F0000000000000000000022;
+			buildPhases = (
+				5F0000000000000000000013,
+				5F0000000000000000000014,
+				5F0000000000000000000015,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5F000000000000000000001E,
+			);
+			fileSystemSynchronizedGroups = (
+				5F0000000000000000000006,
+			);
+			name = UITests;
+			packageProductDependencies = (
+			);
+			productName = UITests;
+			productReference = 5F0000000000000000000009;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		5F0000000000000000000001 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1600;
+				LastUpgradeCheck = 1600;
+				TargetAttributes = {
+					5F000000000000000000000A = {
+						CreatedOnToolsVersion = 16.0;
+					};
+					5F000000000000000000000B = {
+						CreatedOnToolsVersion = 16.0;
+						TestTargetID = 5F000000000000000000000A;
+					};
+					5F000000000000000000000C = {
+						CreatedOnToolsVersion = 16.0;
+						TestTargetID = 5F000000000000000000000A;
+					};
+				};
+			};
+			buildConfigurationList = 5F000000000000000000001F;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				tr,
+				Base,
+			);
+			mainGroup = 5F0000000000000000000002;
+			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				5F0000000000000000000016,
+			);
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 5F0000000000000000000003;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				5F000000000000000000000A,
+				5F000000000000000000000B,
+				5F000000000000000000000C,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		5F000000000000000000000F = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5F0000000000000000000012 = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5F0000000000000000000015 = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		5F000000000000000000000D = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5F0000000000000000000010 = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5F0000000000000000000013 = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		5F000000000000000000001D = {
+			isa = PBXTargetDependency;
+			target = 5F000000000000000000000A;
+			targetProxy = 5F000000000000000000001B;
+		};
+		5F000000000000000000001E = {
+			isa = PBXTargetDependency;
+			target = 5F000000000000000000000A;
+			targetProxy = 5F000000000000000000001C;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		5F0000000000000000000023 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_TREAT_WARNINGS_AS_ERRORS = YES;
+				SWIFT_VERSION = 6.0;
+			};
+			name = Debug;
+		};
+		5F0000000000000000000024 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_TREAT_WARNINGS_AS_ERRORS = YES;
+				SWIFT_VERSION = 6.0;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		5F0000000000000000000025 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = NO;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = SwiftForge;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = ("$(inherited)", "@executable_path/Frameworks");
+				MARKETING_VERSION = 0.2.0;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.swiftforge.Showcase;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		5F0000000000000000000026 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = SwiftForge;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = ("$(inherited)", "@executable_path/Frameworks");
+				MARKETING_VERSION = 0.2.0;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.swiftforge.Showcase;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		5F0000000000000000000027 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 0.2.0;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.swiftforge.SnapshotTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SwiftForgeShowcase.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SwiftForgeShowcase";
+			};
+			name = Debug;
+		};
+		5F0000000000000000000028 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 0.2.0;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.swiftforge.SnapshotTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SwiftForgeShowcase.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SwiftForgeShowcase";
+			};
+			name = Release;
+		};
+		5F0000000000000000000029 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 0.2.0;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.swiftforge.UITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = SwiftForgeShowcase;
+			};
+			name = Debug;
+		};
+		5F000000000000000000002A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 0.2.0;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.swiftforge.UITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = SwiftForgeShowcase;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		5F000000000000000000001F = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5F0000000000000000000023,
+				5F0000000000000000000024,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5F0000000000000000000020 = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5F0000000000000000000025,
+				5F0000000000000000000026,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5F0000000000000000000021 = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5F0000000000000000000027,
+				5F0000000000000000000028,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5F0000000000000000000022 = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5F0000000000000000000029,
+				5F000000000000000000002A,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		5F0000000000000000000016 /* XCLocalSwiftPackageReference "../.." */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ../..;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		5F0000000000000000000017 /* SwiftForgeUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = SwiftForgeUI;
+		};
+/* End XCSwiftPackageProductDependency section */
+
+	};
+	rootObject = 5F0000000000000000000001 /* Project object */;
+}

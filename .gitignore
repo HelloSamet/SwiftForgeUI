@@ -1,0 +1,25 @@
+# macOS
+.DS_Store
+
+# Swift Package Manager
+.build/
+.swiftpm/
+Package.resolved
+
+# Xcode
+DerivedData/
+xcuserdata/
+*.xcuserstate
+*.moved-aside
+*.xccheckout
+*.xcscmblueprint
+.netrc
+
+# Test results
+*.xcresult/
+
+# Snapshot references: a checkout of the SwiftForgeUI-Snapshots repository (scripts/snapshots.sh)
+Examples/SwiftForgeShowcase/__Snapshots__/
+
+# Private planning documents (Turkish): a separate repository, not published
+/internal/

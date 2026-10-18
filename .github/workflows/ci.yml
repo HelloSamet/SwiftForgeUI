@@ -1,0 +1,193 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  schedule:
+    # The UI and accessibility-audit tests take about half an hour, so pull requests skip them; they run on every
+    # push to main and nightly.
+    - cron: "0 3 * * *"
+  workflow_dispatch:
+    inputs:
+      record-snapshots:
+        description: Re-record snapshot references and upload them as an artifact
+        type: boolean
+        default: false
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event_name }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  # Picks an iPhone simulator on the newest runtime whose major version is $1; with $2, only a model whose name ends
+  # with it. The Showcase suite needs a Pro Max: its accessibility audits inspect whole fixture screens, and on
+  # shorter screens content below the edge or a layout that switches structure at large text sizes is misreported.
+  PICK_SIMULATOR: |
+    import json, subprocess, sys
+    major, suffix = sys.argv[1], (sys.argv[2] if len(sys.argv) > 2 else "")
+    data = json.loads(subprocess.check_output(["xcrun", "simctl", "list", "devices", "available", "-j"]))["devices"]
+    runtimes = sorted((r for r in data if f".iOS-{major}-" in r), reverse=True)
+    for runtime in runtimes:
+        for device in data[runtime]:
+            if device["name"].startswith("iPhone") and device["name"].endswith(suffix):
+                print(device["name"], runtime, file=sys.stderr)
+                print(device["udid"]); sys.exit(0)
+    sys.exit(f"No iPhone{' ' + suffix if suffix else ''} simulator with iOS {major} is available")
+
+jobs:
+  lint:
+    name: Lint
+    runs-on: macos-26
+    steps:
+      - uses: actions/checkout@v4
+      - name: Formatting (swift format)
+        run: swift format lint --strict --recursive Sources Tests Examples
+      - name: Design tokens
+        run: scripts/lint-design-tokens.sh
+
+  minimum-toolchain:
+    name: Unit & snapshot tests (Xcode 16.4, iOS 18)
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Select Xcode 16.4
+        run: sudo xcode-select -s /Applications/Xcode_16.4.app
+      - name: Show toolchain
+        run: xcodebuild -version && swift --version
+      - name: Pick simulator
+        id: sim
+        run: echo "udid=$(python3 -c "$PICK_SIMULATOR" 18 "Pro Max")" >> "$GITHUB_OUTPUT"
+      - name: Unit tests
+        run: |
+          xcodebuild test -scheme SwiftForgeUI \
+            -destination "platform=iOS Simulator,id=${{ steps.sim.outputs.udid }}" \
+            -testLanguage en -testRegion US \
+            SWIFT_TREAT_WARNINGS_AS_ERRORS=YES \
+            -resultBundlePath UnitTests.xcresult
+      - name: Check out snapshot references
+        run: scripts/snapshots.sh fetch
+      - name: Snapshot tests
+        env:
+          TEST_RUNNER_SWIFTFORGE_RECORD_SNAPSHOTS: ${{ inputs.record-snapshots && '1' || '' }}
+        run: |
+          xcodebuild test -project Examples/SwiftForgeShowcase/SwiftForgeShowcase.xcodeproj \
+            -scheme SwiftForgeShowcase \
+            -destination "platform=iOS Simulator,id=${{ steps.sim.outputs.udid }}" \
+            -testLanguage en -testRegion US \
+            -only-testing:SnapshotTests \
+            -resultBundlePath SnapshotTests.xcresult
+      - name: Upload recorded snapshots
+        if: ${{ inputs.record-snapshots }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: snapshot-references
+          path: Examples/SwiftForgeShowcase/__Snapshots__
+      - name: Upload snapshot failures
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: snapshot-failures
+          path: Examples/SwiftForgeShowcase/__Snapshots__/.failures
+          if-no-files-found: ignore
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: minimum-toolchain-results
+          path: "*.xcresult"
+
+  ui-tests:
+    name: UI & accessibility-audit tests (Xcode 16.4, iOS 18)
+    if: github.event_name != 'pull_request' && !inputs.record-snapshots
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Select Xcode 16.4
+        run: sudo xcode-select -s /Applications/Xcode_16.4.app
+      - name: Pick simulator
+        id: sim
+        run: echo "udid=$(python3 -c "$PICK_SIMULATOR" 18 "Pro Max")" >> "$GITHUB_OUTPUT"
+      - name: UI and accessibility-audit tests
+        run: |
+          xcodebuild test -project Examples/SwiftForgeShowcase/SwiftForgeShowcase.xcodeproj \
+            -scheme SwiftForgeShowcase \
+            -destination "platform=iOS Simulator,id=${{ steps.sim.outputs.udid }}" \
+            -testLanguage en -testRegion US \
+            -only-testing:UITests \
+            -resultBundlePath UITests.xcresult
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ui-test-results
+          path: "*.xcresult"
+
+  minimum-os:
+    name: Unit tests (Xcode 16.4, iOS 17)
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Select Xcode 16.4
+        run: sudo xcode-select -s /Applications/Xcode_16.4.app
+      - name: Pick or install an iOS 17 simulator
+        id: sim
+        run: |
+          # The runner image may not ship an iOS 17 runtime; download it and create a device if needed.
+          if ! udid=$(python3 -c "$PICK_SIMULATOR" 17); then
+            xcodebuild -downloadPlatform iOS -buildVersion 17.5
+            runtime=$(xcrun simctl list runtimes -j | python3 -c "import json,sys; print([r['identifier'] for r in json.load(sys.stdin)['runtimes'] if r['platform'] == 'iOS' and r['version'].startswith('17.')][-1])")
+            udid=$(xcrun simctl create "iPhone 15 (iOS 17)" com.apple.CoreSimulator.SimDeviceType.iPhone-15 "$runtime")
+          fi
+          echo "udid=$udid" >> "$GITHUB_OUTPUT"
+      - name: Unit tests
+        run: |
+          xcodebuild test -scheme SwiftForgeUI \
+            -destination "platform=iOS Simulator,id=${{ steps.sim.outputs.udid }}" \
+            -testLanguage en -testRegion US \
+            SWIFT_TREAT_WARNINGS_AS_ERRORS=YES \
+            -resultBundlePath UnitTests.xcresult
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: minimum-os-results
+          path: "*.xcresult"
+
+  latest-toolchain:
+    name: Build, test & docs (latest Xcode)
+    runs-on: macos-26
+    steps:
+      - uses: actions/checkout@v4
+      - name: Show toolchain
+        run: xcodebuild -version && swift --version
+      - name: Pick simulator
+        id: sim
+        run: |
+          major=$(xcrun simctl list runtimes -j | python3 -c "import json,sys; print(max(int(r['version'].split('.')[0]) for r in json.load(sys.stdin)['runtimes'] if r['platform']=='iOS' and r['isAvailable']))")
+          echo "udid=$(python3 -c "$PICK_SIMULATOR" "$major")" >> "$GITHUB_OUTPUT"
+      - name: Unit tests
+        run: |
+          xcodebuild test -scheme SwiftForgeUI \
+            -destination "platform=iOS Simulator,id=${{ steps.sim.outputs.udid }}" \
+            -testLanguage en -testRegion US \
+            SWIFT_TREAT_WARNINGS_AS_ERRORS=YES \
+            -resultBundlePath UnitTests.xcresult
+      - name: Build for visionOS
+        run: |
+          xcodebuild build -scheme SwiftForgeUI -destination "generic/platform=visionOS" \
+            SWIFT_TREAT_WARNINGS_AS_ERRORS=YES
+      - name: Build Showcase
+        run: |
+          xcodebuild build -project Examples/SwiftForgeShowcase/SwiftForgeShowcase.xcodeproj \
+            -scheme SwiftForgeShowcase \
+            -destination "platform=iOS Simulator,id=${{ steps.sim.outputs.udid }}"
+      - name: Build documentation
+        run: scripts/build-docs.sh
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: latest-toolchain-results
+          path: "*.xcresult"

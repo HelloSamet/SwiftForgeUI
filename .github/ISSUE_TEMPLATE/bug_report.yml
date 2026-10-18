@@ -1,0 +1,60 @@
+name: Bug report
+description: Something in SwiftForgeUI isn't behaving correctly.
+labels: [bug]
+body:
+  - type: input
+    id: component
+    attributes:
+      label: Component or token
+      placeholder: e.g. SwiftForgeTextField, .buttonStyle(.swiftForge(.tinted)), theme.colors.accent
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: What happened, and what did you expect?
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Minimal reproduction
+      description: A small SwiftUI view that shows the problem.
+      render: swift
+    validations:
+      required: true
+  - type: dropdown
+    id: themes
+    attributes:
+      label: Theme
+      multiple: true
+      options: [forge, midnight, aurora, paper, neoBrutal, mono, ocean, sunset, custom theme]
+  - type: checkboxes
+    id: settings
+    attributes:
+      label: Settings involved
+      options:
+        - label: Dark mode
+        - label: Large text (Dynamic Type)
+        - label: VoiceOver or another assistive technology
+        - label: Increase Contrast, Reduce Motion, or Reduce Transparency
+        - label: Right-to-left language
+  - type: input
+    id: version
+    attributes:
+      label: SwiftForgeUI version
+      placeholder: e.g. 0.2.0 or a commit
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Xcode, OS, and device
+      placeholder: e.g. Xcode 16.4, iOS 18.5, iPhone 16 simulator
+    validations:
+      required: true
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: Screenshots
+      description: Light and dark mode, if relevant.

@@ -1,0 +1,32 @@
+name: Feature or component request
+description: Propose a new component, token, or API change.
+labels: [enhancement]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        API in a design system is hard to walk back, so we discuss the use case before the design.
+        Check the [roadmap](https://github.com/HelloSamet/SwiftForgeUI#roadmap) first.
+  - type: textarea
+    id: use-case
+    attributes:
+      label: Use case
+      description: What are you building, and what's hard to do with SwiftForgeUI and SwiftUI today?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed API
+      description: How you'd like to write it. Prefer native SwiftUI patterns, such as a style or a modifier.
+      render: swift
+  - type: textarea
+    id: native
+    attributes:
+      label: Native alternatives
+      description: Which SwiftUI or system components did you consider, and why don't they fit?
+  - type: textarea
+    id: accessibility
+    attributes:
+      label: Accessibility
+      description: How should it work with VoiceOver, large text, and the keyboard?

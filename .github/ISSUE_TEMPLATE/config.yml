@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Question or idea
+    url: https://github.com/HelloSamet/SwiftForgeUI/discussions
+    about: Ask how to do something, or discuss an idea before proposing it.
+  - name: Security vulnerability
+    url: https://github.com/HelloSamet/SwiftForgeUI/security/advisories/new
+    about: Report it privately — please don't open a public issue.
